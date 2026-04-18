@@ -1,0 +1,32 @@
+# VapeChoice Website — Task Tracker
+
+## Phase 1: Setup
+- [ ] Initialize Next.js project with Tailwind CSS
+- [ ] Move images to `public/images/`
+- [ ] Install GSAP + Framer Motion
+- [ ] Configure Tailwind (galaxy theme, fonts)
+- [ ] Set up global styles + layout
+
+## Phase 2: Generate Section Images
+- [ ] Generate hero section cinematic vape image
+- [ ] Generate 4 category panel backgrounds (Vapes, Pods, E-Liquids, Accessories)
+- [ ] Generate lifestyle image for Our Story section
+- [ ] Generate collection card images (5 categories)
+
+## Phase 3: Components
+- [x] Age Gate popup
+- [x] Navbar (glassmorphism, cart/wishlist icons, mobile menu)
+- [x] Hero Section (GSAP pinned scroll animation)
+- [x] Overlay Scroll Sections (4 sticky category panels)
+- [x] Best Sellers Card Stack (GSAP card stack)
+- [x] Discount/Sale Zone
+- [x] Our Story Section
+- [x] Shop by Collection (infinite slider)
+- [x] Brand Carousel
+- [x] Footer
+
+## Phase 4: Assembly & Polish
+- [x] Main page assembly
+- [x] SEO meta tags
+- [ ] Responsive testing
+- [ ] Browser walkthrough recording
