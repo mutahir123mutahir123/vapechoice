@@ -124,7 +124,7 @@ function VapesContent() {
         </div>
         <div className="text-center flex-1">
           <span
-            className="text-neon-purple text-sm font-semibold tracking-[0.2em] uppercase"
+            className="text-neon-purple text-sm font-semibold tracking-[0.2em] uppercase hidden md:block"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Premium Selection
@@ -132,7 +132,7 @@ function VapesContent() {
           <h2 className="section-title mt-2">
             <span className="gradient-text">Vapes & Mods</span>
           </h2>
-          <p className="section-subtitle">
+          <p className="section-subtitle hidden md:block">
             Explore our collection of high-performance vaping devices
           </p>
         </div>

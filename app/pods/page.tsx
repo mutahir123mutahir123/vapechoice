@@ -124,7 +124,7 @@ function PodsContent() {
         </div>
         <div className="text-center flex-1">
           <span
-            className="text-electric-blue text-sm font-semibold tracking-[0.2em] uppercase"
+            className="text-electric-blue text-sm font-semibold tracking-[0.2em] uppercase hidden md:block"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Compact & Portable
@@ -132,7 +132,7 @@ function PodsContent() {
           <h2 className="section-title mt-2">
             <span className="gradient-text">Pod Systems</span>
           </h2>
-          <p className="section-subtitle">
+          <p className="section-subtitle hidden md:block">
             Lightweight and convenient pod systems for everyday vaping
           </p>
         </div>

@@ -181,7 +181,7 @@ function ELiquidsContent() {
         </div>
         <div className="text-center flex-1">
           <span
-            className="text-pink-500 text-sm font-semibold tracking-[0.2em] uppercase"
+            className="text-pink-500 text-sm font-semibold tracking-[0.2em] uppercase hidden md:block"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Premium Flavors
@@ -189,7 +189,7 @@ function ELiquidsContent() {
           <h2 className="section-title mt-2">
             <span className="gradient-text">E-Liquids</span>
           </h2>
-          <p className="section-subtitle">
+          <p className="section-subtitle hidden md:block">
             Explore our wide range of e-liquid flavors and nicotine options
           </p>
         </div>

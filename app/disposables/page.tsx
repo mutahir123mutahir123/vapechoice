@@ -162,7 +162,7 @@ function DisposableContent() {
         </div>
         <div className="text-center flex-1">
           <span
-            className="text-amber-500 text-sm font-semibold tracking-[0.2em] uppercase"
+            className="text-amber-500 text-sm font-semibold tracking-[0.2em] uppercase hidden md:block"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Ready to Use
@@ -170,7 +170,7 @@ function DisposableContent() {
           <h2 className="section-title mt-2">
             <span className="gradient-text">Disposable Vapes</span>
           </h2>
-          <p className="section-subtitle">
+          <p className="section-subtitle hidden md:block">
             Perfect for on-the-go vaping — no charging needed
           </p>
         </div>
