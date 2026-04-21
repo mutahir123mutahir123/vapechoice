@@ -1,6 +1,25 @@
 "use client";
 
+import { useRef, useEffect } from "react";
+
 export default function HeroSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch (err) {
+        console.warn("Video autoplay failed:", err);
+      }
+    };
+
+    playVideo();
+  }, []);
+
   return (
     <section
       id="hero"
@@ -9,10 +28,12 @@ export default function HeroSection() {
       {/* Hero Video Container */}
       <div className="relative z-[1] w-[90%] sm:w-[85%] lg:w-[80%] h-[80vh] rounded-[30px] overflow-hidden shadow-2xl border border-white/10">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           className="w-full h-full object-cover"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
