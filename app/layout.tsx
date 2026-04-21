@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Inter, Space_Grotesk } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
 import NavigationFix from "@/components/NavigationFix";
+import AliveBackground from "@/components/AliveBackground";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -65,7 +66,7 @@ export default function RootLayout({
       className={`${poppins.variable} ${inter.variable} ${spaceGrotesk.variable}`}
     >
       <body className="min-h-screen antialiased">
-        <div className="stars-bg" aria-hidden="true" />
+        <AliveBackground />
         <NavigationFix />
         <CartProvider>
           {children}

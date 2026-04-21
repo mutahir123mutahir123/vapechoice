@@ -8,10 +8,6 @@ export default function OurStory() {
     <section
       id="our-story"
       className="relative py-20 sm:py-28 overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(ellipse at 70% 50%, rgba(48,43,99,0.2) 0%, transparent 60%), linear-gradient(180deg, rgba(15,12,41,1) 0%, rgba(15,12,41,1) 100%)",
-      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">

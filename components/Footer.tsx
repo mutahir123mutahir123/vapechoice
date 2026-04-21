@@ -63,10 +63,6 @@ export default function Footer() {
     <footer
       id="footer"
       className="relative pt-16 sm:pt-20 pb-8 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(15,12,41,1) 0%, rgba(8,6,20,1) 100%)",
-      }}
     >
       {/* Top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-purple/20 to-transparent" />
@@ -107,7 +103,8 @@ export default function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-white/40 hover:text-neon-purple hover:neon-glow transition-all duration-300 hover:scale-110"
+                  className="w-10 h-10 rounded-xl flex items-center justify-center text-white/60 hover:text-white bg-white/5 hover:bg-white/10 transition-all duration-300 hover:scale-110"
+                  style={{ boxShadow: "0 0 20px rgba(168,85,247,0.2)" }}
                 >
                   {social.icon}
                 </a>
@@ -128,7 +125,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-white/40 text-sm hover:text-neon-purple transition-colors duration-300 inline-flex items-center gap-2 group"
+                    className="text-white/60 text-sm hover:text-white transition-colors duration-300 inline-flex items-center gap-2 group"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     <span className="w-0 h-[1px] bg-neon-purple group-hover:w-3 transition-all duration-300" />
@@ -152,7 +149,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-white/40 text-sm hover:text-neon-purple transition-colors duration-300 inline-flex items-center gap-2 group"
+                    className="text-white/60 text-sm hover:text-white transition-colors duration-300 inline-flex items-center gap-2 group"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     <span className="w-0 h-[1px] bg-neon-purple group-hover:w-3 transition-all duration-300" />
@@ -183,7 +180,7 @@ export default function Footer() {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                <span className="text-white/40 text-sm" style={{ fontFamily: "var(--font-body)" }}>
+                <span className="text-white/60 text-sm" style={{ fontFamily: "var(--font-body)" }}>
                   Pakistan
                 </span>
               </li>
@@ -200,7 +197,7 @@ export default function Footer() {
                 </svg>
                 <a
                   href="mailto:info@vapechoice.pk"
-                  className="text-white/40 text-sm hover:text-neon-purple transition-colors"
+                  className="text-white/60 text-sm hover:text-white transition-colors"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   info@vapechoice.pk
@@ -218,7 +215,7 @@ export default function Footer() {
                 </svg>
                 <a
                   href="tel:+923001234567"
-                  className="text-white/40 text-sm hover:text-neon-purple transition-colors"
+                  className="text-white/60 text-sm hover:text-white transition-colors"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   +92 300 123 4567

@@ -78,10 +78,6 @@ export default function BestSellers() {
     <section
       id="best-sellers"
       className="relative min-h-screen py-20 flex flex-col justify-center items-center overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(ellipse at center, rgba(48,43,99,0.3) 0%, rgba(15,12,41,1) 70%)",
-      }}
     >
       {/* Section Header */}
       <div className="text-center mb-16 relative z-10">

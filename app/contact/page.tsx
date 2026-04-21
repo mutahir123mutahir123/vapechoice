@@ -30,10 +30,6 @@ export default function ContactPage() {
       {/* Contact Section */}
       <section
       className="relative py-20 sm:py-28 min-h-screen"
-      style={{
-        background:
-          "radial-gradient(ellipse at center, rgba(16,185,129,0.2) 0%, rgba(15,12,41,1) 70%)",
-      }}
     >
       {/* Section Header */}
       <div className="text-center mb-16 px-4">

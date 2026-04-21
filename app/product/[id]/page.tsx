@@ -865,9 +865,6 @@ export default function ProductPage() {
       <div className="min-h-screen">
       <section
       className="relative py-20 sm:py-28 min-h-screen"
-      style={{
-        background: `radial-gradient(ellipse at center, ${getProductColor()} 0%, rgba(15,12,41,1) 70%)`,
-      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">

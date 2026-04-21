@@ -55,10 +55,6 @@ export default function BrandCarousel() {
     <section
       id="brands"
       className="relative py-16 sm:py-20 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(15,12,41,1) 0%, rgba(15,12,41,1) 100%)",
-      }}
     >
       {/* Top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />

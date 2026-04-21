@@ -86,10 +86,6 @@ export default function ShopByCollection() {
       id="collections"
       ref={sectionRef}
       className="relative py-20 sm:py-28 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(15,12,41,1) 0%, rgba(15,12,41,1) 100%)",
-      }}
     >
       {/* Section Header */}
       <div className="text-center mb-12 px-4">

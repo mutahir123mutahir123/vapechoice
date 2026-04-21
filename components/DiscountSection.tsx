@@ -380,10 +380,7 @@ export default function DiscountSection() {
       id="discounts"
       ref={sectionRef}
       className="relative py-20 sm:py-28 overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(ellipse at 20% 80%, rgba(168,85,247,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(59,130,246,0.06) 0%, transparent 50%), linear-gradient(180deg, rgba(15,12,41,1) 0%, rgba(10,8,25,1) 50%, rgba(15,12,41,1) 100%)",
-      }}
+      
     >
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-purple/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-electric-blue/30 to-transparent" />

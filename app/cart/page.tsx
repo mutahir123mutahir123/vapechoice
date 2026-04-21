@@ -75,10 +75,6 @@ export default function CartPage() {
       {/* Cart Section */}
       <section
         className="relative py-20 sm:py-28 min-h-screen"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(168,85,247,0.2) 0%, rgba(15,12,41,1) 70%)",
-        }}
       >
         {/* Section Header */}
         <div className="text-center mb-12 px-4">

@@ -104,10 +104,6 @@ function PodsContent() {
   return (
     <section
       className="relative py-20 sm:py-28 min-h-screen"
-      style={{
-        background:
-          "radial-gradient(ellipse at center, rgba(59,130,246,0.2) 0%, rgba(15,12,41,1) 70%)",
-      }}
     >
       <div className="flex items-center justify-between mb-16 px-4 max-w-7xl mx-auto">
         <div className="flex-1">
@@ -140,7 +136,7 @@ function PodsContent() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
           {podProducts.map((product, i) => (
             <motion.a
               href={`/product/${product.id}`}
@@ -156,7 +152,7 @@ function PodsContent() {
                 border: hoveredId === product.id ? "2px solid rgba(59,130,246,0.6)" : "1px solid rgba(255,255,255,0.1)",
               }}
             >
-              <div className="relative h-64 sm:h-72 overflow-hidden">
+              <div className="relative h-48 sm:h-64 overflow-hidden">
                 <div
                   className="absolute inset-0"
                   style={{
@@ -179,28 +175,28 @@ function PodsContent() {
                 />
               </div>
 
-              <div className="p-5">
+              <div className="p-2 sm:p-5">
                 <span
-                  className="text-[10px] font-semibold text-electric-blue tracking-wider uppercase"
+                  className="text-[8px] sm:text-[10px] font-semibold text-electric-blue tracking-wider uppercase"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {product.brand} — {product.category}
                 </span>
                 <h3
-                  className="text-lg font-bold mt-1 mb-2 group-hover:text-electric-blue transition-colors duration-300"
+                  className="text-sm sm:text-base font-bold mt-1 mb-1 sm:mb-2 group-hover:text-electric-blue transition-colors duration-300"
                   style={{ fontFamily: "var(--font-heading)" }}
                 >
                   {product.name}
                 </h3>
                 <p
-                  className="text-xl font-extrabold text-electric-blue"
+                  className="text-base sm:text-lg font-extrabold text-electric-blue"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   PKR {product.price.toLocaleString()}
                 </p>
                 <button
                   onClick={(e) => handleAddToCart(e, product)}
-                  className="btn-primary w-full text-sm py-2.5"
+                  className="btn-primary w-full text-[10px] py-1.5"
                 >
                   <svg
                     width="14"

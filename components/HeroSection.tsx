@@ -127,10 +127,6 @@ useEffect(() => {
       id="hero"
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden flex items-center justify-center"
-      style={{
-        background:
-          "radial-gradient(ellipse at 50% 50%, rgba(48,43,99,0.8) 0%, rgba(15,12,41,1) 100%)",
-      }}
     >
       {/* Background gradients */}
       <div className="absolute inset-0 z-[1] pointer-events-none">

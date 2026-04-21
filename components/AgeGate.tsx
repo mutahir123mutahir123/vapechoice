@@ -6,9 +6,10 @@ import Image from "next/image";
 export default function AgeGate() {
   const [showGate, setShowGate] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
+  const [denied, setDenied] = useState(false);
 
   useEffect(() => {
-    const verified = localStorage.getItem("vapechoice-age-verified");
+    const verified = sessionStorage.getItem("vapechoice-age-verified");
     if (!verified) {
       setShowGate(true);
       document.body.style.overflow = "hidden";
@@ -16,7 +17,7 @@ export default function AgeGate() {
   }, []);
 
   const handleVerify = () => {
-    localStorage.setItem("vapechoice-age-verified", "true");
+    sessionStorage.setItem("vapechoice-age-verified", "true");
     setFadeOut(true);
     setTimeout(() => {
       setShowGate(false);
@@ -25,7 +26,7 @@ export default function AgeGate() {
   };
 
   const handleDeny = () => {
-    window.location.href = "https://www.google.com";
+    setDenied(true);
   };
 
   if (!showGate) return null;
@@ -62,59 +63,88 @@ export default function AgeGate() {
       </div>
 
       <div className="glass-card-strong p-8 sm:p-12 max-w-md w-[90%] text-center relative z-10">
-        {/* Logo */}
-        <div className="mb-6 flex justify-center">
-          <div className="relative w-24 h-24">
-            <Image
-              src="/images/logo image.png"
-              alt="VapeChoice"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-        </div>
+        {denied ? (
+          <>
+            <div className="mb-6 flex justify-center">
+              <div className="relative w-16 h-16">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" className="w-full h-full">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="15" y1="9" x2="9" y2="15" />
+                  <line x1="9" y1="9" x2="15" y2="15" />
+                </svg>
+              </div>
+            </div>
+            <h2
+              className="text-2xl sm:text-3xl font-bold mb-3"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              <span className="text-red-500">Access Denied</span>
+            </h2>
+            <p
+              className="text-white/60 text-sm sm:text-base mb-6 leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              You can not access this website. Thank You.
+            </p>
+            <button
+              onClick={handleDeny}
+              className="btn-secondary text-sm px-6 py-2.5 text-white/60"
+            >
+              Close
+            </button>
+          </>
+        ) : (
+          <>
+            <div className="mb-6 flex justify-center">
+              <div className="relative w-24 h-24">
+                <Image
+                  src="/images/logo image.png"
+                  alt="VapeChoice"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </div>
 
-        {/* Title */}
-        <h2
-          className="text-2xl sm:text-3xl font-bold mb-3"
-          style={{ fontFamily: "var(--font-heading)" }}
-        >
-          <span className="gradient-text">Age Verification</span>
-        </h2>
+            <h2
+              className="text-2xl sm:text-3xl font-bold mb-3"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              <span className="gradient-text">Age Verification</span>
+            </h2>
 
-        {/* Message */}
-        <p
-          className="text-white/60 text-sm sm:text-base mb-8 leading-relaxed"
-          style={{ fontFamily: "var(--font-body)" }}
-        >
-          You must be <span className="text-neon-purple font-semibold">18 years or older</span> to
-          enter this website. By clicking &ldquo;Enter&rdquo;, you confirm that you are of
-          legal age to purchase vaping products.
-        </p>
+            <p
+              className="text-white/60 text-sm sm:text-base mb-8 leading-relaxed"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              You must be <span className="text-neon-purple font-semibold">18 years or older</span> to
+              enter this website. By clicking &ldquo;Enter&rdquo;, you confirm that you are of
+              legal age to purchase vaping products.
+            </p>
 
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <button
-            id="age-verify-yes"
-            onClick={handleVerify}
-            className="btn-primary text-base px-8 py-3.5"
-          >
-            I am 18+ — Enter
-          </button>
-          <button
-            id="age-verify-no"
-            onClick={handleDeny}
-            className="btn-secondary text-base px-8 py-3.5 text-white/60"
-          >
-            I am under 18
-          </button>
-        </div>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button
+                id="age-verify-yes"
+                onClick={handleVerify}
+                className="btn-primary text-base px-8 py-3.5"
+              >
+                I am 18+ — Enter
+              </button>
+              <button
+                id="age-verify-no"
+                onClick={handleDeny}
+                className="btn-secondary text-base px-8 py-3.5 text-white/60"
+              >
+                I am under 18
+              </button>
+            </div>
 
-        {/* Fine print */}
-        <p className="text-white/30 text-xs mt-6">
-          By entering, you agree to our Terms of Service and Privacy Policy.
-        </p>
+            <p className="text-white/30 text-xs mt-6">
+              By entering, you agree to our Terms of Service and Privacy Policy.
+            </p>
+          </>
+        )}
       </div>
     </div>
   );
