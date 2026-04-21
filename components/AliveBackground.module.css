@@ -119,6 +119,24 @@
   animation: floatParticle 8s ease-in-out infinite;
 }
 
+.particleGold {
+  background: #f9c152;
+  filter: blur(2px);
+  opacity: 0.5;
+}
+
+.particleWhite {
+  background: rgba(255, 255, 255, 0.8);
+  filter: blur(2px);
+  opacity: 0.4;
+}
+
+.particleWarm {
+  background: rgba(255, 200, 150, 0.7);
+  filter: blur(2px);
+  opacity: 0.35;
+}
+
 @keyframes floatParticle {
   0%, 100% {
     transform: translateY(0) translateX(0);

@@ -37,84 +37,91 @@ export default function HeroSection() {
 
 useEffect(() => {
     const ctx = gsap.context(() => {
-      // Pin the section and scrub the animation
+      // Check if mobile - skip pin animation on small screens
+      const isMobile = window.innerWidth < 768;
+      
+      if (isMobile) {
+        // Simple fade in for mobile - no scroll animation
+        gsap.set([headingRef.current, descRef.current, btnRef.current], { opacity: 0, y: 20 });
+        gsap.set(".hero-card-link", { opacity: 0, y: 20 });
+        
+        gsap.to([headingRef.current, descRef.current, btnRef.current], {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power2.out",
+          delay: 0.3
+        });
+        
+        gsap.to(".hero-card-link", {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          delay: 0.8
+        });
+        return;
+      }
+
+      // Desktop: subtle smooth scroll animation WITHOUT pin
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top top",
-          end: "+=200%",
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.5,
         },
       });
 
-      // Initial state for text elements
-      gsap.set([headingRef.current, descRef.current, btnRef.current], {
-        opacity: 0,
-        y: 50,
-      });
+      // Initial state - subtle starting positions
+      gsap.set([headingRef.current, descRef.current, btnRef.current], { opacity: 0, y: 30 });
+      gsap.set(".hero-card-link", { opacity: 0, y: 30 });
 
-      // Card starts hidden
-      gsap.set(".hero-card-link", {
-        opacity: 0,
-        y: 50,
-      });
-
-
-
- 
- 
-      // Distribute the 6 bento boxes
+      // Subtle bento movement - just gentle parallax, no explosion
       const boxes = gsap.utils.toArray(".bento-box") as HTMLDivElement[];
-
+      
       boxes.forEach((box, i) => {
-        // Grid is 3 cols by 2 rows (on desktop), indexing 0 to 5.
-        // Row 0: 0, 1, 2
-        // Row 1: 3, 4, 5
         const row = Math.floor(i / 3);
         const col = i % 3;
-
-        // Calculate a direction vector for each box to expand outwards from the center.
-        // Center of grid is functionally row 0.5, col 1.
-        const rowDir = row === 0 ? -1 : 1; 
-        const colDir = col === 0 ? -1 : col === 1 ? (i % 2 === 0 ? -0.5 : 0.5) : 1;
+        const rowDir = row === 0 ? -1 : 1;
+        const colDir = col === 0 ? -1 : col === 1 ? (i % 2 === 0 ? -0.3 : 0.3) : 1;
 
         tl.to(
           box,
           {
-            x: colDir * 600, // Move outward horizontally
-            y: rowDir * 600, // Move outward vertically
-            scale: 2,        // Scale them up so they fly "past" the camera
-            rotation: colDir * 15, // Slight spinning effect
-            opacity: 0,      // Fade them into darkness
-            ease: "power2.inOut",
-            duration: 1.5,
+            x: colDir * 100,
+            y: rowDir * 80,
+            scale: 1.1,
+            rotation: colDir * 5,
+            opacity: 0.9,
+            ease: "power1.out",
+            duration: 1,
           },
           0
         );
       });
 
-      // After Bento animation, sequence the text staggered reveal
+      // Smooth text reveal with proper stagger
       tl.to(
         headingRef.current,
         { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
-        1.2 // Start slightly before the boxes finish their 1.5s animation
+        0.3
       )
       .to(
         descRef.current,
         { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
-        "-=0.6"
+        "-=0.5"
       )
       .to(
         btnRef.current,
         { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.8, ease: "power2.out" },
-        "-=0.6"
+        "-=0.5"
       )
       .to(
         ".hero-card-link",
         { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.8, ease: "power2.out" },
-        ">" // animate strictly after button finishes
+        ">"
       );
       
     }, sectionRef);
