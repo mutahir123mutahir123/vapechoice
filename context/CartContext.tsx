@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useRef, ReactNode } from "react";
 
 export interface CartItem {
   id: number;
@@ -24,27 +24,30 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+const loadInitialItems = (): CartItem[] => {
+  if (typeof window === "undefined") return [];
+  try {
+    const stored = localStorage.getItem("cart");
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
-  const [mounted, setMounted] = useState(false);
+  const initialized = useRef(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("cart");
-    if (stored) {
-      try {
-        setItems(JSON.parse(stored));
-      } catch (e) {
-        console.error("Failed to parse cart", e);
-      }
-    }
-    setMounted(true);
+    if (initialized.current) return;
+    initialized.current = true;
+    setItems(loadInitialItems());
   }, []);
 
   useEffect(() => {
-    if (mounted) {
-      localStorage.setItem("cart", JSON.stringify(items));
-    }
-  }, [items, mounted]);
+    if (!initialized.current) return;
+    localStorage.setItem("cart", JSON.stringify(items));
+  }, [items]);
 
   const addToCart = (product: Omit<CartItem, "quantity">) => {
     setItems((prev) => {

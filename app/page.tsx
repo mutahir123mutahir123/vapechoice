@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import AgeGate from "@/components/AgeGate";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -15,21 +15,18 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false);
+  const initialized = useRef(false);
 
   useEffect(() => {
+    if (initialized.current) return;
+    initialized.current = true;
+    
     gsap.registerPlugin(ScrollTrigger);
-    setMounted(true);
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+      ScrollTrigger.refresh();
+    });
   }, []);
-
-  useEffect(() => {
-    if (mounted) {
-      requestAnimationFrame(() => {
-        window.scrollTo(0, 0);
-        ScrollTrigger.refresh();
-      });
-    }
-  }, [mounted]);
 
   return (
     <>

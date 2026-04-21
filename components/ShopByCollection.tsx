@@ -144,6 +144,7 @@ export default function ShopByCollection() {
                     src={col.image}
                     alt={col.title}
                     fill
+                    sizes="(max-width: 640px) 260px, 280px"
                     className="object-contain p-4"
                     unoptimized
                   />

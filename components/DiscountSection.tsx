@@ -283,7 +283,6 @@ const discountSets = {
 
 const getDiscountSet = () => {
   const day = new Date().getDay();
-  const hour = new Date().getHours();
   
   if (day === 0 || day === 6) return { products: discountSets.weekend, title: "Weekend Special Deals" };
   if (day === 1) return { products: discountSets.monday, title: "Monday Flash Sales" };
@@ -438,6 +437,7 @@ export default function DiscountSection() {
                   src={product.image}
                   alt={product.name}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-contain p-3 drop-shadow-xl"
                 />
               </div>

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useParams } from "next/navigation";
 import AgeGate from "@/components/AgeGate";
@@ -805,21 +806,15 @@ export default function ProductPage() {
   const productId = parseInt(params.id as string);
   const product = products[productId];
 
-  const [selectedNicotine, setSelectedNicotine] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (product?.productType === 'eliquid' && product.nicotineOptions) {
-      setSelectedNicotine(product.nicotineOptions[1]);
-    }
-  }, [product]);
-
   const [quantity, setQuantity] = useState(1);
+  const [selectedNicotine, setSelectedNicotine] = useState<number | null>(
+    product?.productType === 'eliquid' && product.nicotineOptions 
+      ? product.nicotineOptions[1] 
+      : null
+  );
   const { addToCart, items } = useCart();
-  const [inCart, setInCart] = useState(false);
-
-  useEffect(() => {
-    setInCart(items.some((item) => item.id === product?.id));
-  }, [items, product]);
+  
+  const inCart = items.some((item) => item.id === product?.id);
 
   if (!product) {
     return (
@@ -833,12 +828,6 @@ export default function ProductPage() {
       </>
     );
   }
-
-  const getProductColor = () => {
-    if (product.productType === 'disposable') return 'rgba(245,158,11,0.2)';
-    if (product.productType === 'eliquid') return 'rgba(236,72,153,0.2)';
-    return 'rgba(168,85,247,0.2)';
-  };
 
   const getGradient = () => {
     if (product.productType === 'disposable') return 'linear-gradient(135deg, #f59e0b, #c2410c)';
@@ -879,9 +868,9 @@ export default function ProductPage() {
           </div>
           <nav className="flex-1 text-center text-sm">
             <ol className="flex items-center justify-center gap-2 text-white/40">
-              <li><a href="/" className="hover:text-white">Home</a></li>
+              <li><Link href="/" className="hover:text-white">Home</Link></li>
               <li>/</li>
-              <li><a href="/vapes" className="hover:text-white">Shop</a></li>
+              <li><Link href="/vapes" className="hover:text-white">Shop</Link></li>
               <li>/</li>
               <li className="text-white">{product.name}</li>
             </ol>
@@ -899,7 +888,7 @@ export default function ProductPage() {
               )}
               <div className="relative h-96">
                 <div className="absolute inset-0 rounded-2xl" style={{ background: getGradient() }} />
-                <Image src={product.image} alt={product.name} fill className="object-contain p-8" />
+                <Image src={product.image} alt={product.name} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain p-8" />
               </div>
             </div>
           </motion.div>

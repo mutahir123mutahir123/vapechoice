@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -81,26 +82,8 @@ export default function Navbar() {
 
           {/* Right Icons */}
           <div className="flex items-center gap-3">
-            {/* Search */}
-            <button
-              id="search-btn"
-              className="p-2.5 rounded-xl hover:bg-white/5 transition-colors duration-300 text-white/70 hover:text-white"
-              aria-label="Search"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </button>
+            {/* Search Bar */}
+            <SearchBar />
 
             {/* Wishlist */}
             <button

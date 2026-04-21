@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import AgeGate from "@/components/AgeGate";
@@ -8,57 +7,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useCart } from "@/context/CartContext";
 
-const nicotineStrengths = [
-  { value: "3mg", label: "3mg" },
-  { value: "10mg", label: "10mg" },
-  { value: "25mg", label: "25mg" },
-  { value: "35mg", label: "35mg" },
-  { value: "50mg", label: "50mg" },
-];
-
-const cartItems = [
-  {
-    id: 1,
-    name: "Uwell Caliburn G4 Pro",
-    brand: "Uwell",
-    price: 5500,
-    quantity: 1,
-    image: "/images/Uwell Pod Kits – VAPE CHOICE/imgi_21_uwell-caliburn-g4-pro-pod-vape-kit-stripe-black_360x.webp",
-    variant: "Stripe Black",
-  },
-  {
-    id: 2,
-    name: "Drip Down Cola Ice",
-    brand: "Drip Down",
-    price: 3200,
-    quantity: 2,
-    image: "/images/DRIP DOWN FREEBASE – VAPE CHOICE/imgi_11_Drip-Down-Cola-Ice-E-Liquids-60ml_360x.jpg",
-    variant: "60ml - 3mg",
-  },
-];
-
 export default function CartPage() {
   const { items, updateQuantity } = useCart();
-  const cartItems = items.length > 0 ? items : [
-  {
-    id: 1,
-    name: "Uwell Caliburn G4 Pro",
-    brand: "Uwell",
-    price: 5500,
-    quantity: 1,
-    image: "/images/Uwell Pod Kits – VAPE CHOICE/imgi_21_uwell-caliburn-g4-pro-pod-vape-kit-stripe-black_360x.webp",
-    variant: "Stripe Black",
-  },
-  {
-    id: 2,
-    name: "Drip Down Cola Ice",
-    brand: "Drip Down",
-    price: 3200,
-    quantity: 2,
-    image: "/images/DRIP DOWN FREEBASE – VAPE CHOICE/imgi_11_Drip-Down-Cola-Ice-E-Liquids-60ml_360x.jpg",
-    variant: "60ml - 3mg",
-  },
-];
 
   const subtotal = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -147,6 +97,7 @@ export default function CartPage() {
                       src={item.image}
                       alt={item.name}
                       fill
+                      sizes="128px"
                       className="object-contain p-2"
                     />
                   </div>

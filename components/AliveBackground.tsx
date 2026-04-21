@@ -69,7 +69,7 @@ export function AliveBackground() {
     };
   }, [handleMouseMove, initShimmer]);
 
-  const particles = useMemo(() => Array.from({ length: 24 }), []);
+  const particles = useMemo(() => Array.from({ length: 72 }), []);
 
   return (
     <div ref={containerRef} className={styles.container}>
@@ -151,8 +151,8 @@ function FloatingParticle({ index, scrollY }: ParticleProps) {
         left: `${(index * 4) % 100}%`,
         top: `${20 + (index % 8) * 10}%`,
         animationDelay: `${index * 0.4}s`,
-        width: index % 2 === 0 ? '4px' : '3px',
-        height: index % 2 === 0 ? '4px' : '3px',
+        width: index % 2 === 0 ? '7px' : '6px',
+        height: index % 2 === 0 ? '7px' : '6px',
       }}
     />
   );

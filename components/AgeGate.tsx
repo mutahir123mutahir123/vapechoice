@@ -1,26 +1,29 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 export default function AgeGate() {
-  const [showGate, setShowGate] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
   const [denied, setDenied] = useState(false);
+  const [verified, setVerified] = useState(false);
+  const initialized = useRef(false);
 
   useEffect(() => {
-    const verified = sessionStorage.getItem("vapechoice-age-verified");
-    if (!verified) {
-      setShowGate(true);
-      document.body.style.overflow = "hidden";
+    if (initialized.current) return;
+    initialized.current = true;
+    const stored = sessionStorage.getItem("vapechoice-age-verified");
+    if (stored === "true") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Initialization guard pattern
+      setVerified(true);
     }
   }, []);
 
   const handleVerify = () => {
     sessionStorage.setItem("vapechoice-age-verified", "true");
+    setVerified(true);
     setFadeOut(true);
     setTimeout(() => {
-      setShowGate(false);
       document.body.style.overflow = "";
     }, 500);
   };
@@ -29,7 +32,7 @@ export default function AgeGate() {
     setDenied(true);
   };
 
-  if (!showGate) return null;
+  if (verified) return null;
 
   return (
     <div

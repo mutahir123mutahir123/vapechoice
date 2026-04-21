@@ -142,6 +142,7 @@ export default function BestSellers() {
                     src={product.image}
                     alt={product.name}
                     fill
+                    sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 480px"
                     className="object-contain p-2 drop-shadow-xl"
                   />
                 </div>

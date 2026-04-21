@@ -10,14 +10,6 @@ import { useCart } from "@/context/CartContext";
 
 export const dynamic = "force-dynamic";
 
-const nicotineStrengths = [
-  { value: "3mg", label: "3mg" },
-  { value: "10mg", label: "10mg" },
-  { value: "25mg", label: "25mg" },
-  { value: "35mg", label: "35mg" },
-  { value: "50mg", label: "50mg" },
-];
-
 const eLiquidProducts = [
   {
     id: 1,
@@ -222,6 +214,7 @@ function ELiquidsContent() {
                   src={product.image}
                   alt={product.name}
                   fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   className="object-contain p-3 transition-transform duration-500 group-hover:scale-110"
                 />
                 <span className="absolute top-2 left-2 px-2 py-1 text-[9px] font-bold rounded-full bg-white/20 text-white">

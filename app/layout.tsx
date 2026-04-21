@@ -41,6 +41,11 @@ export const metadata: Metadata = {
     "vape accessories",
     "VapeChoice",
   ],
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
   openGraph: {
     title: "VapeChoice — Premium Vapes, Pods & Accessories",
     description:
