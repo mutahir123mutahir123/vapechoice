@@ -1,0 +1,153 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.section {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.imageContainer {
+  position: absolute;
+  inset: 0;
+}
+
+.imageContainer > span {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem 2rem;
+}
+
+@media (min-width: 640px) {
+  .content {
+    padding: 0 3rem 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .content {
+    padding: 0 5rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content {
+    padding: 0 8rem 3.5rem;
+  }
+}
+
+.contentInner {
+  max-width: 42rem;
+}
+
+.number {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 5rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.05);
+  font-family: var(--font-display);
+  line-height: 1;
+}
+
+@media (min-width: 640px) {
+  .number {
+    font-size: 6rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .number {
+    font-size: 7rem;
+    top: 3rem;
+    right: 3rem;
+  }
+}
+
+.label {
+  display: inline-block;
+  color: var(--color-neon-purple);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-family: var(--font-body);
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.05;
+  color: white;
+  font-family: var(--font-heading);
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 3.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 4.5rem;
+  }
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  line-height: 1.625;
+  max-width: 32rem;
+  font-family: var(--font-body);
+}
+
+@media (min-width: 640px) {
+  .subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .subtitle {
+    font-size: 1.375rem;
+  }
+}
+
+.fadeBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6rem;
+  z-index: 11;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(15, 12, 41, 0.6) 0%, transparent 100%);
+}

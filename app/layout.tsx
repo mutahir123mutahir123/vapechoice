@@ -1,9 +1,12 @@
+import GalaxyBackground from "@/components/Galaxy";
 import type { Metadata } from "next";
 import { Poppins, Inter, Space_Grotesk } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
 import NavigationFix from "@/components/NavigationFix";
-import AliveBackground from "@/components/AliveBackground";
+import ClientLayout from "./ClientLayout";
 import "./globals.css";
+
+
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -60,6 +63,28 @@ export const metadata: Metadata = {
   },
 };
 
+
+
+
+// export default function RootLayout({
+//   children,
+// }: Readonly<{
+//   children: React.ReactNode;
+// }>) {
+//   return (
+//     <html
+//       lang="en"
+//       className={`${poppins.variable} ${inter.variable} ${spaceGrotesk.variable}`}
+//     >
+//       <body className="min-h-screen antialiased">
+//         <NavigationFix />
+//         <CartProvider>
+//           {children}
+//         </CartProvider>
+//       </body>
+//     </html>
+//   );
+// }
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -70,12 +95,9 @@ export default function RootLayout({
       lang="en"
       className={`${poppins.variable} ${inter.variable} ${spaceGrotesk.variable}`}
     >
-      <body className="min-h-screen antialiased">
-        <AliveBackground />
-        <NavigationFix />
-        <CartProvider>
-          {children}
-        </CartProvider>
+      <body className="min-h-screen antialiased relative">
+        <GalaxyBackground />
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

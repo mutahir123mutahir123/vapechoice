@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import AgeGate from "@/components/AgeGate";
@@ -86,6 +87,7 @@ const podProducts = [
 ];
 
 function PodsContent() {
+  const router = useRouter();
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const { addToCart } = useCart();
 
@@ -108,14 +110,14 @@ function PodsContent() {
       <div className="flex items-center justify-between mb-16 px-4 max-w-7xl mx-auto">
         <div className="flex-1">
           <button
-            onClick={() => window.history.back()}
+            onClick={() => router.back()}
             className="flex items-center gap-2 text-white/60 hover:text-white transition-colors cursor-pointer"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="19" y1="12" x2="5" y2="12" />
               <polyline points="12 19 5 12 12 5" />
             </svg>
-            Back
+            <span className="hidden md:inline">Back</span>
           </button>
         </div>
         <div className="text-center flex-1">
@@ -223,24 +225,11 @@ function PodsContent() {
 }
 
 export default function PodsPage() {
-  const [refreshKey, setRefreshKey] = useState(0);
-
-  useEffect(() => {
-    const handleVisibility = () => {
-      if (!document.hidden) {
-        setRefreshKey(k => k + 1);
-      }
-    };
-    
-    document.addEventListener("visibilitychange", handleVisibility);
-    return () => document.removeEventListener("visibilitychange", handleVisibility);
-  }, []);
-
   return (
     <>
       <AgeGate />
       <Navbar />
-      <div className="min-h-screen" key={refreshKey}>
+      <div className="min-h-screen">
         <PodsContent />
       </div>
       <Footer />

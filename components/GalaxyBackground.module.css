@@ -1,0 +1,81 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: #0f0c29;
+}
+
+/* 🌈 Animated Gradient Layer */
+.gradientLayer {
+  position: absolute;
+  inset: -50%;
+  filter: blur(120px);
+  animation: moveGradient 20s ease infinite alternate;
+}
+
+.gradientLayer::before,
+.gradientLayer::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* Purple Blob */
+.gradientLayer::before {
+  background: radial-gradient(circle, #a855f7, transparent 70%);
+  top: 20%;
+  left: 20%;
+}
+
+/* Blue Blob */
+.gradientLayer::after {
+  background: radial-gradient(circle, #3b82f6, transparent 70%);
+  bottom: 10%;
+  right: 20%;
+}
+
+/* Additional glow */
+.wrapper::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #ff7a18, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(100px);
+  opacity: 0.4;
+}
+
+/* 🌌 Gradient Animation */
+@keyframes moveGradient {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+  }
+  50% {
+    transform: translate(10%, -10%) scale(1.2);
+  }
+  100% {
+    transform: translate(-10%, 10%) scale(1);
+  }
+}
+
+/* ⭐ Stars Canvas */
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+/* 🧊 Noise Texture */
+.noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+}

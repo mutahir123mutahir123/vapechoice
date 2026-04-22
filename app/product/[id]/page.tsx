@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -802,6 +803,7 @@ productType: 'eliquid',
 };
 
 export default function ProductPage() {
+  const router = useRouter();
   const params = useParams();
   const productId = parseInt(params.id as string);
   const product = products[productId];
@@ -858,12 +860,12 @@ export default function ProductPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <div className="flex-1">
-            <button onClick={() => window.history.back()} className="flex items-center gap-2 text-white/60 hover:text-white transition-colors cursor-pointer">
+            <button onClick={() => router.back()} className="flex items-center gap-2 text-white/60 hover:text-white transition-colors cursor-pointer">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="19" y1="12" x2="5" y2="12" />
                 <polyline points="12 19 5 12 12 5" />
               </svg>
-              Back
+              <span className="hidden md:inline">Back</span>
             </button>
           </div>
           <nav className="flex-1 text-center text-sm">
