@@ -12,7 +12,6 @@ export function AliveBackground() {
   const layerCRef = useRef<HTMLDivElement>(null);
   const layerDRef = useRef<HTMLDivElement>(null);
   const particleRef = useRef<HTMLDivElement>(null);
-  const shimmerRef = useRef<HTMLDivElement>(null);
   const mousePos = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -58,27 +57,14 @@ export function AliveBackground() {
     });
   }, []);
 
-  const initShimmer = useCallback(() => {
-    if (!shimmerRef.current) return;
-
-    gsap.to(shimmerRef.current, {
-      opacity: 0.15,
-      duration: 4,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    });
-  }, []);
-
   useEffect(() => {
     if (!isActive) return;
     window.addEventListener("mousemove", handleMouseMove);
-    initShimmer();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [handleMouseMove, initShimmer, isActive]);
+  }, [handleMouseMove, isActive]);
 
   const particles = useMemo(() => Array.from({ length: 72 }), []);
 
@@ -107,7 +93,7 @@ export function AliveBackground() {
         ref={layerCRef}
         style={{ y: layerC_Y }}
       >
-        <div className={styles.gradientC} ref={shimmerRef} />
+        <div className={styles.gradientC} />
         <div className={styles.sunsetCore} />
       </motion.div>
 
