@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useCallback, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./AliveBackground.module.css";
 
 export function AliveBackground() {
+  const [isActive, setIsActive] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const layerARef = useRef<HTMLDivElement>(null);
   const layerBRef = useRef<HTMLDivElement>(null);
@@ -15,6 +14,18 @@ export function AliveBackground() {
   const particleRef = useRef<HTMLDivElement>(null);
   const shimmerRef = useRef<HTMLDivElement>(null);
   const mousePos = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      setIsActive(scrolled < 800);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollY = useScroll();
   const globalScrollY = scrollY.scrollYProgress;
@@ -60,16 +71,18 @@ export function AliveBackground() {
   }, []);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    if (!isActive) return;
     window.addEventListener("mousemove", handleMouseMove);
     initShimmer();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [handleMouseMove, initShimmer]);
+  }, [handleMouseMove, initShimmer, isActive]);
 
   const particles = useMemo(() => Array.from({ length: 72 }), []);
+
+  if (!isActive) return null;
 
   return (
     <div ref={containerRef} className={styles.container}>

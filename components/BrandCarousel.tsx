@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import gsap from "gsap";
 
 const brands = [
   { id: "smok", name: "SMOK", image: "/images/brands logo/smok.png" },
@@ -14,52 +13,18 @@ const brands = [
   { id: "tokyo", name: "TOKYO", image: "/images/brands logo/tokyo.png" },
 ];
 
-// Triple for seamless scroll
 const allBrands = [...brands, ...brands, ...brands];
 
 export default function BrandCarousel() {
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const singleSetWidth = brands.length * (160 + 32); // logo width + gap
-
-    const tween = gsap.to(track, {
-      x: -singleSetWidth,
-      duration: 20,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize((x: string) => {
-          return parseFloat(x) % singleSetWidth;
-        }),
-      },
-    });
-
-    const handleEnter = () => gsap.to(tween, { timeScale: 0.2, duration: 0.5 });
-    const handleLeave = () => gsap.to(tween, { timeScale: 1, duration: 0.5 });
-
-    track.addEventListener("mouseenter", handleEnter);
-    track.addEventListener("mouseleave", handleLeave);
-
-    return () => {
-      tween.kill();
-      track.removeEventListener("mouseenter", handleEnter);
-      track.removeEventListener("mouseleave", handleLeave);
-    };
-  }, []);
+  const [paused, setPaused] = useState(false);
 
   return (
     <section
       id="brands"
       className="relative py-16 sm:py-20 overflow-hidden"
     >
-      {/* Top divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
-      {/* Section Header */}
       <div className="text-center mb-10 px-4">
         <span
           className="text-neon-purple text-sm font-semibold tracking-[0.2em] uppercase"
@@ -72,28 +37,28 @@ export default function BrandCarousel() {
         </h2>
       </div>
 
-      {/* Brand Logo Carousel */}
       <div className="relative">
-        {/* Edge fades */}
         <div
           className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 z-10 pointer-events-none"
           style={{
-            background:
-              "linear-gradient(to right, rgba(15,12,41,1) 0%, transparent 100%)",
+            background: "linear-gradient(to right, rgba(15,12,41,1) 0%, transparent 100%)",
           }}
         />
         <div
           className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 z-10 pointer-events-none"
           style={{
-            background:
-              "linear-gradient(to left, rgba(15,12,41,1) 0%, transparent 100%)",
+            background: "linear-gradient(to left, rgba(15,12,41,1) 0%, transparent 100%)",
           }}
         />
 
         <div
-          ref={trackRef}
-          className="flex gap-8 items-center will-change-transform"
-          style={{ width: "max-content" }}
+          className="flex gap-8 items-center"
+          style={{
+            width: "max-content",
+            animation: paused ? "none" : "marquee 40s linear infinite",
+          }}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
           {allBrands.map((brand, i) => (
             <a
