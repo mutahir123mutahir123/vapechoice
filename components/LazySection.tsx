@@ -35,17 +35,16 @@ export default function LazySection({
   rootMargin = "200px",
 }: LazySectionProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const element = ref.current;
-    if (!element) return;
+    if (!element || inView) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          setInView(true);
           observer.disconnect();
         }
       },
@@ -55,15 +54,11 @@ export default function LazySection({
     observer.observe(element);
 
     return () => observer.disconnect();
-  }, [threshold, rootMargin]);
-
-  const handleLoad = () => {
-    setLoaded(true);
-  };
+  }, [threshold, rootMargin, inView]);
 
   return (
-    <div ref={ref} onLoad={handleLoad}>
-      {visible && loaded ? children : <Skeleton />}
+    <div ref={ref}>
+      {inView ? children : <Skeleton />}
     </div>
   );
 }
