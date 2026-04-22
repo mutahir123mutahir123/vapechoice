@@ -140,19 +140,8 @@ function FloatingParticle({ index, scrollY }: ParticleProps) {
   const y = useTransform(scrollY, [0, 1], [0, -200 - index * 30]);
   const x = useTransform(scrollY, [0, 1], [0, (index % 3) * 50 - 50]);
 
-  useEffect(() => {
-    if (!ref.current) return;
-
-    gsap.to(ref.current, {
-      y: "random(-20, 20)",
-      x: "random(-10, 10)",
-      duration: "random(3, 6)",
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: index * 0.3,
-    });
-  }, [index]);
+  const floatY = (index % 3) * 5 + 10;
+  const floatDuration = 3 + (index % 4);
 
   return (
     <motion.div
@@ -163,7 +152,8 @@ function FloatingParticle({ index, scrollY }: ParticleProps) {
         x,
         left: `${(index * 4) % 100}%`,
         top: `${20 + (index % 8) * 10}%`,
-        animationDelay: `${index * 0.4}s`,
+        animation: `particle-float ${floatDuration}s ease-in-out infinite`,
+        animationDelay: `${index * 0.5}s`,
         width: index % 2 === 0 ? '7px' : '6px',
         height: index % 2 === 0 ? '7px' : '6px',
       }}
